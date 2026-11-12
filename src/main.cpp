@@ -8,15 +8,18 @@
  */
 
 #include <Arduino.h>
+
 #include <PTITCube.h>
+
+PTIT_CDH cdh;
 
 PTIT_COM myLoRa;
 
 void setup() {
-    Serial.begin(115200);
-    while (!Serial) { delay(10); }
+    cdh.begin(115200);
+    while (!cdh) { delay(10); }
 
-    Serial.println("\n[VỆ TINH] Khởi tạo module LoRa phát dữ liệu...");
+    cdh.println("\n[VỆ TINH] Khởi tạo module LoRa phát dữ liệu...");
     myLoRa.init();
 
     // Cấu hình Kênh và Địa chỉ sử dụng hệ THẬP PHÂN (Decimal) cho dễ hiểu
@@ -32,8 +35,8 @@ void loop() {
 
     String payload = "PACKET #" + String(counter) + " - CUBESAT TELEMETRY DATA";
     
-    Serial.print("Đang phát xuống mặt đất: ");
-    Serial.println(payload);
+    cdh.print("Đang phát xuống mặt đất: ");
+    cdh.println(payload);
     
     myLoRa.sendMessage(payload);
 
