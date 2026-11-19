@@ -10,7 +10,7 @@ PTIT_COM myLoRa;
 void setup() {
     cdh.begin(115200);
     myLoRa.init();
-    cdh.println("[COM] LoRa TX ready.");
+    cdh.println("COM: LoRa TX ready.");
 }
 
 void loop() {
@@ -18,7 +18,7 @@ void loop() {
     counter++;
 
     String payload = "PACKET #" + String(counter) + " - CUBESAT TELEMETRY";
-    cdh.println("[TX] " + payload);
+    cdh.println("TX: " + payload);
 
     myLoRa.sendMessage(payload);
     delay(2000);
